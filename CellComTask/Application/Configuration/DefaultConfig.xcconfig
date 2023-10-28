@@ -1,0 +1,13 @@
+//
+//  DefaultConfig.xcconfig
+//  CellComTask
+//
+//  Created by Fed on 27.10.2023.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+BASE_URL = api.themoviedb.org
+IMAGE_URL = image.tmdb.org/t/p/w300
+API_KEY = 2c46288716a18fb7aadcc2a801f3fc6b

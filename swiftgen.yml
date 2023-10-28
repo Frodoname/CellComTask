@@ -1,0 +1,10 @@
+# swiftgen.yml
+# Generate Swift code for string resources
+strings:
+  inputs:
+    - CellComTask/Application/Resource/Localizable.strings
+  outputs:
+    - templatePath: swiftgen/structured-swift5.stencil
+      output: CellComTask/Application/Resource/Generated/Strings+Generated.swift
+      params:
+        enumName: Texts

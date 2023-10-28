@@ -1,0 +1,10 @@
+#macOS
+*.DS_Store
+
+#Xcode
+xcuserdata
+build
+DerivedData
+*.xcuserstate
+*.xcbkptlist
+*.pbxuser

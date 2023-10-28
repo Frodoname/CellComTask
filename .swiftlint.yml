@@ -1,0 +1,350 @@
+
+disabled_rules:
+  - cyclomatic_complexity
+  - function_body_length
+  - discarded_notification_center_observer
+  - type_body_length
+  - nesting
+  - large_tuple
+  - function_parameter_count
+  - trailing_whitespace
+  - void_return
+  - closure_end_indentation
+  - trailing_comma
+  - todo
+  
+opt_in_rules:
+  - force_unwrapping
+  - closure_end_indentation
+  - sorted_imports
+  - unneeded_parentheses_in_closure_argument
+  
+excluded:
+  - Pods
+
+warning_threshold: 1
+
+line_length:
+  warning: 120
+  error: 120
+  ignores_urls: true
+  ignores_comments: true
+  
+file_length:
+  warning: 1000
+  error: 2000
+  
+identifier_name:
+  min_length: 2
+  max_length: 60
+  
+type_name:
+  min_length: 2
+  max_length: 60
+
+force_unwrapping:
+  error
+
+#Будет ошибка при принудительном касте типов
+force_cast:
+  error
+  
+#Ошибка при точке с запятой на конце
+trailing_semicolon:
+  error
+  
+#Будет ошибка при излишних скобках
+control_statement:
+  error
+
+#Будет ошибка при лишнем указании getter-a
+implicit_getter:
+  error
+
+#Будет ошибка, если параметры метода расположены вертикально и не из одной табуляции
+vertical_parameter_alignment:
+  error
+
+#Будет ошибка при отсутствии нужных пробелов при указании возвращаемого значения
+return_arrow_whitespace:
+  error
+
+
+#Кастомные правила
+custom_rules:
+  custom_dto_suffix:
+    name: "DTO model should have 'DTO' suffix"
+    included: "DarknessImprover/DTO"
+    regex: "(struct \\w*(?<!DTO):)|(struct (\\w*(?<!DTO)<))"
+    message: "DTO model should have 'DTO' suffix"
+    severity: error
+
+  custom_enum_suffix:
+    name: "Enums in DTO are forbidden"
+    included: "DarknessImprover/DTO"
+    regex: "(enum (?!CodingKeys))"
+    message: "Use enums in models"
+    severity: error
+
+  custom_wrong_id:
+    name: "Incorrect identifier naming"
+    excluded: "DarknessImprover/DTO"
+    regex: "(var|let) \\w*Id( |:)"
+    message: "Use ID"
+    severity: error
+
+  custom_wrong_url:
+    name: "Incorrect URL naming"
+    excluded: "DarknessImprover/DTO"
+    regex: "(var|let) \\w*Url( |:)"
+    message: "Use URL"
+    severity: error
+
+  custom_void_return:
+    name: "Incorrect usage of Void"
+    regex: "([(](Void)?[)] ?-> ?Void)"
+    match_kinds:
+      - typeidentifier
+    message: "Use '() -> ()'"
+    severity: error
+
+  custom_empty_string:
+    name: "Incorrect check for string emptiness"
+    regex: "( == \"\")|(== \"\")|( ==\"\")|(==\"\")|( != \"\")|(!= \"\")|( !=\"\")|(!=\"\")"
+    message: "Use 'string.isEmpty'"
+    severity: error
+
+  custom_guard_self:
+    name: "Incorrect usage of guard let self = self"
+    regex: "guard\\s+let\\s+(((?!self).)\\S* = self[ ,]|`self` = self)"
+    message: "Use 'guard let self = self'"
+    severity: error
+
+  custom_void_return:
+    name: "Incorrect usage of Void"
+    regex: "([(](Void)?[)] ?-> ?Void)"
+    match_kinds:
+      - typeidentifier
+    message: "Use '() -> ()'"
+    severity: error
+
+  custom_types_Int:
+    name: "Unnecessary type indication"
+    regex: "(var|let) \\w*: Int = \\d"
+    message: "Don't indicate the type"
+    severity: error
+
+  custom_types_Double:
+    name: "Unnecessary type indication"
+    regex: "(var|let) \\w*: Double = \\d"
+    message: "Don't indicate the type"
+    severity: error
+
+  custom_types_Date:
+    name: "Unnecessary type indication"
+    regex: "(var|let) \\w*: Date = Date\\("
+    message: "Don't indicate the type"
+    severity: error
+
+  custom_array_Type:
+    name: "Incorrect array creation"
+    regex: "(var|let) \\w* = \\[\\w*\\]\\(\\)"
+    message: "var a: [Type] = []"
+    severity: error
+
+  vboolean_clear_condition:
+    name: "Overcomplicated condition"
+    regex: "^(?>(?!(as\\?)|(\\?.)).)*((!= true)|(!= false)).*$"
+    message: "Use == true or == false, or the variable itself as a condition"
+    severity: error
+
+  custom_documentation_ticks:
+    name: "Incorrect apostrophe in documentation"
+    regex: "´"
+    message: "Use '`' instead of '´' for proper documentation."
+    match_kinds:
+      - comment
+      - doccomment
+    severity: error
+
+  custom_boolean_in_ternar_return:
+    name: "Return Bool from ternary operator"
+    regex: "\\? (true : false)|(false : true)"
+    message: "Don't use a ternary operator to return Bool"
+    severity: error
+
+  custom_unowned:
+    name: "Usage of unowned"
+    regex: "\\[unowned "
+    message: "Use 'weak' instead of 'unowned'"
+    severity: error
+
+  custom_type_inferred_context:
+    name: "Unnecessary type indication"
+    regex: "^\\w* *((var)|(let)) \\w+\\:\\s(\\w+)\\s\\=\\s\\4"
+    message: "var a = Class()"
+    severity: error
+
+  custom_type_inferred_context2:
+    name: "Unnecessary type indication"
+    regex: "^(?>(?!(\\w* *((var)|(let)) \\w+))).*: (\\w+) = \\5\\.(\\w+)(?>(?!\\(\\)))"
+    message: "func f(a: UIColor = .red)"
+    severity: error
+
+  custom_func_line_breaks:
+    name: "Line breaks when calling a function"
+    regex: "\\w+\\((\\w+: |)[\\w.|\\[\\]\":$%]+,$"
+    message: "Line breaks must be made according to the guide"
+    severity: error
+
+  custom_array_line_breaks:
+    name: "Line breaks in multiline arrays"
+    regex: "\\[[\\d\\w,.]+,$"
+    message: "Line breaks for multiline arrays must be made according to the guide"
+    severity: error
+
+  custom_custom_void_handler:
+    name: "Use VoidHandler"
+    regex: "typealias \\w+ = (VoidHandler|\\( *\\) *-> *\\( *\\))"
+    message: "Use VoidHandler instead of a custom typealias"
+    severity: error
+
+  custom_error_handler:
+    name: "Use ErrorHandler"
+    regex: "\\(NSError\\) *-> *\\( *\\)"
+    message: "Use ErrorHandler instead of (NSError) -> ()"
+    severity: error
+
+  custom_custom_error_handler:
+    name: "Use ErrorHandler"
+    regex: "typealias \\w+ = (ErrorHandler|\\(NSError\\) *-> *\\( *\\))"
+    message: "Use ErrorHandler instead of a custom typealias"
+    severity: error
+
+  custom_optional_error_handler:
+    name: "Use OptionalErrorHandler"
+    regex: "\\(NSError\\?\\) *-> *\\( *\\)"
+    message: "Use OptionalErrorHandler instead of (NSError?) -> ()"
+    severity: error
+
+  custom_custom_optional_error_handler:
+    name: "Use OptionalErrorHandler"
+    regex: "typealias \\w+ = (OptionalErrorHandler|\\(NSError\\?\\) *-> *\\( *\\))"
+    message: "Use OptionalErrorHandler instead of a custom typealias"
+    severity: error
+
+  custom_int_handler:
+    name: "Use IntHandler"
+    regex: "\\(Int\\) *-> *\\( *\\)"
+    message: "Use IntHandler instead of (Int) -> ()"
+    severity: error
+
+  custom_custom_int_handler:
+    name: "Use IntHandler"
+    regex: "typealias \\w+ = (IntHandler|\\(Int\\) *-> *\\( *\\))"
+    message: "Use IntHandler instead of a custom typealias"
+    severity: error
+
+  custom_bool_handler:
+    name: "Use BoolHandler"
+    regex: "\\(Bool\\) *-> *\\( *\\)"
+    message: "Use BoolHandler instead of (Bool) -> ()"
+    severity: error
+
+  custom_custom_bool_handler:
+    name: "Use BoolHandler"
+    regex: "typealias \\w+ = (BoolHandler|\\(Bool\\) *-> *\\( *\\))"
+    message: "Use BoolHandler instead of a custom typealias"
+    severity: error
+
+  custom_string_handler:
+    name: "Use StringHandler"
+    regex: "\\(String\\) *-> *\\( *\\)"
+    message: "Use StringHandler instead of (String) -> ()"
+    severity: error
+
+  custom_custom_string_handler:
+    name: "Use StringHandler"
+    regex: "typealias \\w+ = (StringHandler|\\(String\\) *-> *\\( *\\))"
+    message: "Use StringHandler instead of a custom typealias"
+    severity: error
+
+  custom_handler_names:
+    name: "Naming of blocks"
+    regex: "(var|let) \\w+(Action|Block): (\\(|\\w+(Handler|Action|Handler))"
+    message: "Closure must have a Handler suffix"
+    severity: error
+
+  custom_forced_handlers:
+    name: "Force unwrap for closures is forbidden"
+    regex: "(var|let) \\w+: (\\(*\\w*\\)->\\(\\w*\\)*|\\w+(Handler|Action|Handler))!"
+    message: "Use var handler: Handler? instead of var handler: Handler!"
+    severity: error
+    
+  custom_color_literal:
+    name: "Use of color literals is prohibited"
+    regex: "#colorLiteral"
+    message: "Use prepared colors from assets"
+    severity: error
+      
+  custom_add_subviews:
+    name: "Use of 'addSubview()' inside 'addSubviews()' is prohibited"
+    regex: "addSubviews\\(\\) \\{\\n\\s*\\w*.addSubview\\("
+    message: "Use 'add {}' in a declarative style"
+    severity: error
+      
+  custom_objc_inline:
+    name: "Incorrect writing of @objc"
+    regex: "@objc\\n"
+    message: "Write @objc in one line"
+    severity: error
+      
+#  custom_doc:
+#    name: "Missing documentation on non-private interface two lines below"
+#    regex: "\\n\\n(public|open|struct|class|enum) (?!\\w+_Previews)"
+#    message: "Add documentation with CMD+OPTION+/"
+#    severity: error
+
+  custom_void_parameters_method:
+    name: "Use of methods to create a View without parameters is prohibited"
+    regex: "\\(\\) -> some View \\{"
+    message: "Use var instead of a method"
+    severity: error
+
+  custom_cyrillic_file_name:
+    name: "Use of Cyrillic in file names is prohibited"
+    regex: "[A-Za-z]*[ЁёА-я]+[A-Za-z]*(\\.swift)$"
+    message: "Check the file name for Cyrillic characters"
+    match_kinds:
+      - comment
+    severity: error
+
+  custom_cyrillic_code:
+    name: "Use of Cyrillic outside of comments, strings, and documentation is prohibited"
+    regex: "[ЁёА-я]"
+    message: "Check the name for the presence of Cyrillic characters"
+    match_kinds:
+      - argument
+      - identifier
+      - keyword
+      - parameter
+      - typeidentifier
+    severity: error
+
+  custom_map_name:
+    name: "Dictionaries should be named with the Map suffix"
+    regex: "(?<!(Map)|(map))(:| =) \\[\\w+: \\w+]( |,|\\))"
+    message: "Add Map suffix"
+    severity: error
+
+  custom_set_name:
+    name: "Sets should be named with the Set suffix"
+    regex: "(?<!(Set)|(set))(((: Set<\\w+>(?!\\])([\\s]| *.)))| = Set<)"
+    message: "Add Set suffix"
+    severity: error
+
+  custom_geometryproxy_name:
+    name: "GeometryProxy should have Proxy suffix"
+    regex: "GeometryReader \\{ \\w*(?<!(proxy)|(Proxy)) "
+    message: "Add Proxy suffix"
+    severity: error

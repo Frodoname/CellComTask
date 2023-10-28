@@ -1,0 +1,40 @@
+/* 
+  Localizable.strings
+  CellComTask
+
+  Created by Fed on 27.10.2023.
+  
+*/
+
+/* Common */
+"movieApp" = "Movie App";
+"popular" = "Popular";
+"currentlyAiring" = "Currently Airing";
+"favourite" = "Favourite";
+"movie_rating" = "Rating: %.1f";
+"smthWentWrong" = "Ooops! Something went wrong :(";
+"noFavorYet" = "No favorites yet";
+"filter" = "Filter";
+"gotIt" = "Got it!";
+
+/* Genre */
+"action" = "Action";
+"adventure" = "Adventure";
+"animation" = "Animation";
+"comedy" = "Comedy";
+"crime" = "Crime";
+"documentary" = "Documentary";
+"drama" = "Drama";
+"family" = "Family";
+"fantasy" = "Fantasy";
+"history" = "History";
+"horror" = "Horror";
+"music" = "Music";
+"mystery" = "Mystery";
+"romance" = "Romance";
+"science_fiction" = "Science Fiction";
+"tv_movie" = "TV Movie";
+"thriller" = "Thriller";
+"war" = "War";
+"western" = "Western";
+"noGenre" = "No info about genre";
